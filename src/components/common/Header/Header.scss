@@ -1,0 +1,101 @@
+.header {
+    background: $background;
+    border-bottom: 1px solid $border-color;
+    position: sticky;
+    top: 0;
+    z-index: $z-sticky;
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.95);
+  
+    &__content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4rem;
+    }
+  
+    &__logo {
+      text-decoration: none;
+      
+      h1 {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+        margin: 0;
+        transition: color $transition-fast;
+      }
+  
+      &:hover h1 {
+        color: $accent-color;
+      }
+    }
+  
+    &__nav {
+      display: flex;
+      gap: $space-6;
+      align-items: center;
+    }
+  
+    &__nav-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      padding: $space-2 $space-4;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+      text-decoration: none;
+      border-radius: $border-radius;
+      transition: all $transition-fast;
+  
+      &:hover {
+        color: $text-primary;
+        background-color: $background-dark;
+      }
+  
+      &.active {
+        color: $accent-color;
+        background-color: rgba($accent-color, 0.1);
+      }
+  
+      &:focus {
+        outline: 2px solid $accent-color;
+        outline-offset: 2px;
+      }
+    }
+  
+    &__wishlist-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 1.25rem;
+      height: 1.25rem;
+      padding: 0 $space-1;
+      background-color: $accent-color;
+      color: white;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      border-radius: $border-radius-full;
+    }
+  }
+  
+  @media (max-width: $breakpoint-sm) {
+    .header {
+      &__content {
+        padding: 0 $space-4;
+      }
+  
+      &__logo h1 {
+        font-size: $font-size-xl;
+      }
+  
+      &__nav {
+        gap: $space-4;
+      }
+  
+      &__nav-link {
+        padding: $space-2 $space-3;
+        font-size: $font-size-sm;
+      }
+    }
+  }

@@ -1,0 +1,428 @@
+.film-details-page {
+    min-height: 100vh;
+  
+    &--loading,
+    &--error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    &__error {
+      text-align: center;
+      padding: $space-12;
+  
+      h1 {
+        font-size: $font-size-3xl;
+        margin-bottom: $space-4;
+        color: $error-color;
+      }
+  
+      p {
+        font-size: $font-size-lg;
+        margin-bottom: $space-8;
+        color: $text-secondary;
+      }
+    }
+  
+    &__hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+  
+    &__backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: $background-dark;
+    }
+  
+    &__hero-overlay {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+      );
+      width: 100%;
+      padding: $space-12 0;
+    }
+  
+    &__hero-content {
+      display: flex;
+      gap: $space-8;
+      align-items: flex-start;
+    }
+  
+    &__poster-container {
+      flex-shrink: 0;
+    }
+  
+    &__poster {
+      width: 300px;
+      height: auto;
+      border-radius: $border-radius-lg;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+  
+    &__info {
+      flex: 1;
+      color: white;
+      padding-top: $space-4;
+    }
+  
+    &__breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      margin-bottom: $space-4;
+      font-size: $font-size-sm;
+      opacity: 0.8;
+  
+      a {
+        color: white;
+        text-decoration: none;
+        transition: opacity $transition-fast;
+  
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+  
+      span:last-child {
+        opacity: 0.6;
+      }
+    }
+  
+    &__title {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      margin-bottom: $space-4;
+    }
+  
+    &__tagline {
+      font-size: $font-size-xl;
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: $space-6;
+    }
+  
+    &__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $space-6;
+      margin-bottom: $space-6;
+    }
+  
+    &__meta-item {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+  
+      svg {
+        opacity: 0.8;
+      }
+    }
+  
+    &__genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $space-2;
+      margin-bottom: $space-8;
+    }
+  
+    &__genre {
+      padding: $space-1 $space-3;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: $border-radius-full;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      backdrop-filter: blur(4px);
+    }
+  
+    &__wishlist-btn {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      padding: $space-4 $space-6;
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: all $transition-fast;
+      backdrop-filter: blur(8px);
+  
+      &.popular-button {
+        background: $popular-primary;
+        color: white;
+  
+        &:hover {
+          background: $popular-secondary;
+          transform: translateY(-2px);
+        }
+      }
+  
+      &.top-rated-button {
+        background: $top-rated-primary;
+        color: white;
+  
+        &:hover {
+          background: $top-rated-secondary;
+          transform: translateY(-2px);
+        }
+      }
+  
+      &.upcoming-button {
+        background: $upcoming-primary;
+        color: white;
+  
+        &:hover {
+          background: $upcoming-secondary;
+          transform: translateY(-2px);
+        }
+      }
+  
+      &.active {
+        background: $error-color;
+  
+        &:hover {
+          background: $error-color-hover;
+        }
+      }
+    }
+  
+    &__content {
+      padding: $space-16 0;
+    }
+  
+    &__details {
+      max-width: 800px;
+    }
+  
+    &__section {
+      margin-bottom: $space-12;
+  
+      h2 {
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        margin-bottom: $space-6;
+        color: $text-primary;
+      }
+    }
+  
+    &__overview {
+      font-size: $font-size-lg;
+      line-height: $line-height-relaxed;
+      color: $text-secondary;
+    }
+  
+    &__details-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $space-4;
+  
+      @media (min-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  
+    &__detail-item {
+      display: flex;
+      flex-direction: column;
+      gap: $space-1;
+  
+      strong {
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        font-size: $font-size-sm;
+      }
+  
+      span {
+        color: $text-secondary;
+        font-size: $font-size-base;
+      }
+    }
+  
+    &--popular {
+      .film-details-page__title {
+        font-family: $font-family-sans;
+      }
+  
+      .film-details-page__section h2 {
+        font-family: $font-family-sans;
+        color: $popular-primary;
+      }
+    }
+  
+    &--top_rated {
+      .film-details-page__title {
+        font-family: $font-family-serif;
+      }
+  
+      .film-details-page__section h2 {
+        font-family: $font-family-serif;
+        color: $top-rated-primary;
+      }
+    }
+  
+    &--upcoming {
+      .film-details-page__title {
+        font-family: $font-family-mono;
+      }
+  
+      .film-details-page__section h2 {
+        font-family: $font-family-mono;
+        color: $upcoming-primary;
+      }
+    }
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-3 $space-6;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all $transition-fast;
+  
+    &--primary {
+      background: $accent-color;
+      color: white;
+  
+      &:hover {
+        background: $error-color-hover;
+        transform: translateY(-1px);
+      }
+    }
+  }
+  
+  @media (max-width: $breakpoint-lg) {
+    .film-details-page {
+      &__hero-content {
+        gap: $space-6;
+      }
+  
+      &__poster {
+        width: 250px;
+      }
+  
+      &__title {
+        font-size: $font-size-3xl;
+      }
+  
+      &__tagline {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    .film-details-page {
+      &__hero {
+        min-height: auto;
+      }
+  
+      &__hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: $space-6;
+      }
+  
+      &__poster {
+        width: 200px;
+        margin: 0 auto;
+      }
+  
+      &__info {
+        padding-top: 0;
+      }
+  
+      &__title {
+        font-size: $font-size-2xl;
+      }
+  
+      &__meta {
+        justify-content: center;
+        gap: $space-4;
+      }
+  
+      &__genres {
+        justify-content: center;
+      }
+  
+      &__content {
+        padding: $space-12 0;
+      }
+  
+      &__details {
+        margin: 0 auto;
+      }
+  
+      &__details-grid {
+        grid-template-columns: 1fr;
+        gap: $space-6;
+      }
+  
+      &__detail-item {
+        text-align: center;
+      }
+    }
+  }
+  
+  @media (max-width: $breakpoint-sm) {
+    .film-details-page {
+      &__hero-overlay {
+        padding: $space-8 0;
+      }
+  
+      &__poster {
+        width: 160px;
+      }
+  
+      &__title {
+        font-size: $font-size-xl;
+      }
+  
+      &__tagline {
+        font-size: $font-size-base;
+      }
+  
+      &__wishlist-btn {
+        padding: $space-3 $space-4;
+        font-size: $font-size-base;
+      }
+  
+      &__meta {
+        flex-direction: column;
+        gap: $space-2;
+        align-items: center;
+      }
+  
+      &__overview {
+        font-size: $font-size-base;
+      }
+  
+      &__section h2 {
+        font-size: $font-size-xl;
+        text-align: center;
+      }
+    }
+  }

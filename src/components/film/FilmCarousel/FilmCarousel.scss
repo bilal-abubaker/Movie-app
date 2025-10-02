@@ -1,0 +1,229 @@
+.film-carousel {
+  padding: 3rem 0;
+
+  &__title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #333;
+    margin-left: 3rem;
+    &--popular {
+      font-family: 'Inter', sans-serif;
+      color: #3b82f6;
+    }
+
+    &--top_rated {
+      font-family: 'Playfair Display', serif;
+      color: #f59e0b;
+    }
+
+    &--upcoming {
+      font-family: 'Orbitron', monospace;
+      color: #8b5cf6;
+    }
+  }
+
+  &__container {
+    position: relative;
+    padding: 0 3.5rem;
+  }
+
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e9ecef;
+    border-radius: 9999px;
+    color: #333;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.15s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  &__list > * {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  &__loading {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  &__skeleton {
+    flex-shrink: 0;
+    width: 280px;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+  }
+
+  &__skeleton-image {
+    aspect-ratio: 2/3;
+    background: linear-gradient(90deg, #f8f9fa 25%, rgba(255, 255, 255, 0.5) 50%, #f8f9fa 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  &__skeleton-content {
+    padding: 1.25rem;
+  }
+
+  &__skeleton-title {
+    height: 1.5rem;
+    background: linear-gradient(90deg, #f8f9fa 25%, rgba(255, 255, 255, 0.5) 50%, #f8f9fa 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__skeleton-meta {
+    height: 1rem;
+    width: 60%;
+    background: linear-gradient(90deg, #f8f9fa 25%, rgba(255, 255, 255, 0.5) 50%, #f8f9fa 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  &__skeleton-text {
+    height: 3rem;
+    background: linear-gradient(90deg, #f8f9fa 25%, rgba(255, 255, 255, 0.5) 50%, #f8f9fa 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.25rem;
+  }
+
+  &__error {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #ef4444;
+    font-weight: 500;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .film-carousel {
+    &__container {
+      padding: 0 3rem;
+    }
+
+    &__nav-btn {
+      &--left {
+        left: 0;
+      }
+
+      &--right {
+        right: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .film-carousel {
+    padding: 2rem 0;
+
+    &__container {
+      padding: 0 2.5rem;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__list, &__loading {
+      gap: 1rem;
+    }
+
+    &__skeleton {
+      width: 240px;
+    }
+
+    &__skeleton-content {
+      padding: 1rem;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .film-carousel {
+    &__container {
+      padding: 0 2rem;
+    }
+
+    &__nav-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__skeleton {
+      width: 200px;
+    }
+  }
+}
