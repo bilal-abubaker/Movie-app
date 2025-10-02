@@ -11,10 +11,8 @@ const TMDB_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMzM2OTJiZDExMmJiODBmMmIwM
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3'
 
 
-
 async function fetchMovieData(endpoint) {
   const url = `${TMDB_BASE_URL}/${endpoint}?api_key=${TMDB_API_KEY}`
-  console.log(`Fetching: ${endpoint}`)
   
   try {
     const response = await fetch(url, {
@@ -47,7 +45,13 @@ async function createServer() {
 
   app.use(vite.middlewares)
 
+  app.get('/favicon.ico', (req, res) => res.status(204).end())
+
   app.use('*', async (req, res, next) => {
+    if (req.originalUrl.includes('.well-known')) {
+      return res.status(204).end()
+    }
+
     const url = req.originalUrl
 
     try {
@@ -83,7 +87,6 @@ async function createServer() {
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx')
 
-      console.log('Rendering HTML...')
       const appHtml = render(url, pageData)
 
       const dataScript = `<script>window.__SSR_DATA__ = ${JSON.stringify(pageData)}</script>`
@@ -92,7 +95,6 @@ async function createServer() {
         .replace(`<!--ssr-outlet-->`, appHtml)
         .replace('</body>', `${dataScript}</body>`)
 
-      console.log('SSR complete')
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
       vite.ssrFixStacktrace(e)
